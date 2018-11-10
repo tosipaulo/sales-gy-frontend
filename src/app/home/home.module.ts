@@ -5,12 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MessageModule } from '../shared/components/message/message.module';
 
 import { SigninComponent } from './signin/signin.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MessageModule
+    MessageModule,
+    HttpClientModule
   ],
   declarations: [SigninComponent]
 })
