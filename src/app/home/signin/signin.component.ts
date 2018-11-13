@@ -27,14 +27,14 @@ export class SigninComponent implements OnInit {
   }
 
   login() {
-    const email = '';
-    const password = '';
+    const email = this.loginForm.get('email').value;
+    const password = this.loginForm.get('password').value;
 
     this.auth
       .authenticate(email, password)
       .subscribe(
         (response) => {
-
+          console.log(response)
         },
         err => {
           console.log(err.error);

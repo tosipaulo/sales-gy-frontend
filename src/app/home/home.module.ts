@@ -6,13 +6,15 @@ import { MessageModule } from '../shared/components/message/message.module';
 
 import { SigninComponent } from './signin/signin.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MessageModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   declarations: [SigninComponent]
 })
