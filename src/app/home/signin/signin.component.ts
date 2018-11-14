@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { AuthService } from 'src/app/core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -11,10 +12,12 @@ import { AuthService } from 'src/app/core/auth.service';
 export class SigninComponent implements OnInit {
 
   loginForm: FormGroup;
+  @ViewChild('userEmailInput') userEmailInput: ElementRef<HTMLInputElement>
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -34,11 +37,12 @@ export class SigninComponent implements OnInit {
       .authenticate(email, password)
       .subscribe(
         (response) => {
-          console.log(response)
+          this.router.navigate(['sales'])
         },
         err => {
           console.log(err.error);
           this.loginForm.reset();
+          this.userEmailInput.nativeElement.focus()
         }
       )
 
