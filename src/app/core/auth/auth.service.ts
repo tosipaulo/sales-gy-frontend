@@ -1,3 +1,4 @@
+import { UserService } from './../user/user.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators'
@@ -12,15 +13,16 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private userService: UserService) { }
 
   authenticate( email: string, password: string) {
 
     return this.http
       .post(`${environment.api}/auth/authenticate`, {email, password})
       .pipe(tap(res => {
-        const authToken = res['token'];
-        this.tokenService.setToken(authToken);
+        this.tokenService.setToken(res['token']);
+        this.userService.setUser(res['user'])
       }))
 
   }

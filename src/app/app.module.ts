@@ -6,11 +6,13 @@ import { HomeModule } from './home/home.module';
 
 import { AppComponent } from './app.component';
 import { SalesModule } from './sales/sales.module';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
