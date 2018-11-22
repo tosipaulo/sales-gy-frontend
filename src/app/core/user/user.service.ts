@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { TokenService } from './../token/token.service';
 
 import { User } from './user.model';
 
@@ -11,7 +12,7 @@ export class UserService {
   private userSubject = new BehaviorSubject<User>(null)
   private user: any;
 
-  constructor( ) {
+  constructor( private tokenService: TokenService ) {
     this.getUserStorage();
    }
 
@@ -22,6 +23,10 @@ export class UserService {
 
   getUser(){
     return this.userSubject.asObservable()
+  }
+
+  isLogged() {
+    return this.tokenService.hasToken();
   }
 
   private getUserStorage() {
