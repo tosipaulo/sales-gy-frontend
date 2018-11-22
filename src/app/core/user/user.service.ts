@@ -29,6 +29,11 @@ export class UserService {
     return this.tokenService.hasToken();
   }
 
+  removeUser() {
+    window.localStorage.removeItem('user');
+    this.tokenService.removeToken();
+  }
+
   private getUserStorage() {
     const user = window.localStorage.getItem('user');
     this.userSubject.next(JSON.parse(user))
