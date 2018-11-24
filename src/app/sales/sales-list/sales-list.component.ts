@@ -7,7 +7,7 @@ import { UserService } from 'src/app/core/user/user.service';
 @Component({
   selector: 'app-sales-list',
   templateUrl: './sales-list.component.html',
-  styleUrls: ['./sales-list.component.css']
+  styleUrls: ['./sales-list.component.scss']
 })
 export class SalesListComponent implements OnInit {
 

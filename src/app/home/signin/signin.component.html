@@ -1,25 +1,42 @@
-<h4 class="text-center">Login</h4>
+<section class="l-login">
+  <div class="m-login">
+    <h2 class="m-login__title">login</h2>
 
-<form [formGroup]="loginForm" class="form mt-4" (submit)="login()">
+    <div class="m-login__form">
 
-  <div class="form-group">
-    <input #userEmailInput type="text" formControlName="email" class="form-control" placeholder="email" autofocus>
-    <app-message
-      *ngIf="loginForm.get('email').errors?.required"
-      text="e-mail is required">
-    </app-message>
+      <form [formGroup]="loginForm" (submit)="login()">
+
+        <mat-form-field class="m-login__form__group">
+          <input
+            #userEmailInput
+            formControlName="email"
+            matInput
+            placeholder="e-mail"
+            class="m-login__form__input"
+            autofocus>
+            <mat-error *ngIf="loginForm.get('email').errors?.required">
+              Por favor, preencha o campo e-mail.
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="m-login__form__group">
+          <input
+            matInput
+            formControlName="password"
+            placeholder="senha"
+            type="password"
+            class="m-login__form__input">
+            <mat-error *ngIf="loginForm.get('password').errors?.required">
+              Por favor, preencha o campo senha.
+            </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" class="m-login__form__btn" [disabled]="loginForm.invalid">Entrar</button>
+
+        <a routerLink="/sales" class="m-login__form__link">Esqueceu sua senha?</a>
+
+      </form>
+
+    </div>
   </div>
-
-  <div class="form-group">
-    <input type="password" formControlName="password" class="form-control" placeholder="senha">
-    <app-message
-      *ngIf="loginForm.get('password').errors?.required"
-      text="passowrd is required">
-    </app-message>
-  </div>
-
-  <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">login</button>
-
-</form>
-
-<a routerLink="/sales" class="text-center">cadastra-se</a>
+</section>

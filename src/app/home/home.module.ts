@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+
 import { MessageModule } from '../shared/components/message/message.module';
 
 import { SigninComponent } from './signin/signin.component';
@@ -14,7 +18,15 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     MessageModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
+  ],
+  exports: [
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule
   ],
   declarations: [SigninComponent]
 })
