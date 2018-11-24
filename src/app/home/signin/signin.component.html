@@ -22,6 +22,10 @@
             <mat-error *ngIf="loginForm.get('email').errors?.required && loginForm.controls.email.touched">
               Por favor, preencha o campo e-mail.
             </mat-error>
+
+            <mat-error *ngIf="loginForm.get('email').errors?.email && loginForm.controls.email.touched">
+              Esse e-mail não é válido.
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field class="m-login__form__group">
