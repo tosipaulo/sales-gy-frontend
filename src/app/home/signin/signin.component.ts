@@ -16,6 +16,7 @@ export class SigninComponent implements OnInit {
 
   loginForm: FormGroup;
   @ViewChild('userEmailInput') userEmailInput: ElementRef<HTMLInputElement>
+  userInvalid: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,8 +45,13 @@ export class SigninComponent implements OnInit {
           this.router.navigate(['sales'])
         },
         err => {
-          console.log(err.error);
+          if(err.status === 400) {
+            this.userInvalid = true
+          }
           this.loginForm.reset();
+          Object.keys(this.loginForm.controls).forEach(key => {
+            this.loginForm.controls[key].setErrors(null)
+          });
           this.platformDetectorService.isPlatformBrowser() && this.userEmailInput.nativeElement.focus()
         }
       )

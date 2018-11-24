@@ -2,6 +2,10 @@
   <div class="m-login">
     <h2 class="m-login__title">login</h2>
 
+    <div class="m-login__mensagem" *ngIf="userInvalid">
+      E-mail ou senha inválida.
+    </div>
+
     <div class="m-login__form">
 
       <form [formGroup]="loginForm" (submit)="login()">
@@ -13,8 +17,9 @@
             matInput
             placeholder="e-mail"
             class="m-login__form__input"
-            autofocus>
-            <mat-error *ngIf="loginForm.get('email').errors?.required">
+            autofocus
+            autocomplete="off">
+            <mat-error *ngIf="loginForm.get('email').errors?.required && loginForm.controls.email.touched">
               Por favor, preencha o campo e-mail.
             </mat-error>
         </mat-form-field>
@@ -26,9 +31,10 @@
             placeholder="senha"
             type="password"
             class="m-login__form__input">
-            <mat-error *ngIf="loginForm.get('password').errors?.required">
+            <mat-error *ngIf="loginForm.get('password').errors?.required && loginForm.controls.password.touched">
               Por favor, preencha o campo senha.
             </mat-error>
+
         </mat-form-field>
 
         <button mat-raised-button color="primary" class="m-login__form__btn" [disabled]="loginForm.invalid">Entrar</button>
